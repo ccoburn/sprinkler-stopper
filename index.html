@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="sprinkler">
+
+<head>
+  <meta charset="utf-8">
+  <title>Sprinkler stopper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body ng-controller="mainCtrl">
+<h1>{{ data.display_location.city }} , {{ data.display_location.state }}</h1>
+<h3>{{ data.weather }}</h3>
+<h3>{{ data.temp_f }}</h3>
+<img src={{weatherImage}} alt="">
+
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/mainctrl.js"></script>
+  <script src="js/service.js"></script>
+</body>
+
+</html>
