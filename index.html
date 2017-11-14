@@ -4,28 +4,60 @@
 <head>
   <meta charset="utf-8">
   <title>Sprinkler stopper</title>
+  <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body ng-controller="mainCtrl">
 
-  <input ng-model="addZip" placeholder="Enter zip code">
-<button ng-click="sendZip(addZip)">Update</button>
+  <div class="main">
 
-<input ng-model="updateHour" placeholder="enter hour">
-<input ng-model="updateMinute" placeholder="enter minutes">
-<button ng-click="changeTime(updateHour, updateMinute)">Update</button>
+    <div class="main-wrapper">
 
-  <section>
-    <h1>{{ data.display_location.city }} , {{ data.display_location.state }}</h1>
-    <h3>{{ data.weather }}</h3>
-    <h3>{{ data.temp_f }}</h3>
-    <img src= "{{ weatherImage }}" alt="">
-  </section>
+      <div class="side-wrapper">
+        <section class="weather-wrapper">
+          <div class="weather-box">
+            <h1 class="city-text">{{ data.display_location.city }} , {{ data.display_location.state }}</h1>
+            <div class="condition">
+              <img class="weather-image" src="{{ weatherImage }}" alt="">
+              <h3 class="weather-text">{{ data.weather }}</h3>
+            </div>
+            <h3 class="weather-text">{{ data.temp_f }}F degrees</h3>
+          </div>
+        </section>
+        <div class="zip-box">
+          <h1 class="weather-text">Change Location</h1>
+          <div class="">
+            <input ng-model="addZip" placeholder="Enter zip code">
+            <button ng-click="sendZip(addZip)">Update</button>
+          </div>
+        </div>
+      </div>
 
-<h1>{{ sprinkler }}</h1>
-<h2>{{ sprinklerHour }}:{{ sprinklerMinute }}</h2>
-<h1>{{ timeLeft }}</h1>
+      <div class="side-wrapper">
+        <div class="weather-wrapper">
+          <div class="weather-box">
+          <h2 class="weather-text"> Sprinklers set to run at {{ sprinklerHour }}:{{ sprinklerMinute }}</h2>
+          <h1 class="time-text">Time left: {{ timeLeft }}</h1>
+          <h1 class="sprinkler-text">{{ sprinkler }}</h1>
+        </div>
+        </div>
+        <div class="zip-box">
+          <h1 class="weather-text">Change Time</h1>
+          <div class="">
+            <input ng-model="updateHour" placeholder="enter hour">
+            <input ng-model="updateMinute" placeholder="enter minutes">
+            <button ng-click="changeTime(updateHour, updateMinute)">Update</button>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>
   <script src="js/app.js"></script>
