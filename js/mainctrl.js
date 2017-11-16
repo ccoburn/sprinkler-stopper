@@ -15,6 +15,7 @@ angular.module('sprinkler').controller('mainCtrl', function($scope, service) {
     })
   }
 
+  
   $scope.getDataAtTime = function() {
     service.getData().then(function(response) {
       $scope.data = response;
