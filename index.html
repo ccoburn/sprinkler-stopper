@@ -35,28 +35,50 @@
       </div>
 
       <div class="side-wrapper">
-        <div class="weather-wrapper">
-          <div class="weather-box">
-          <h2 class="weather-text"> Sprinklers set to run at {{ sprinklerHour }}:{{ sprinklerMinute }}</h2>
-          <h1 class="time-text">Time left: {{ timeLeft }}</h1>
-          <h1 class="sprinkler-text">{{ sprinkler }}</h1>
-        </div>
-        </div>
-        <div class="zip-box">
-          <h1 class="weather-text">Change Time</h1>
-          <div class="">
-            <input ng-model="updateHour" placeholder="enter hour">
-            <input ng-model="updateMinute" placeholder="enter minutes">
-            <button ng-click="changeTime(updateHour, updateMinute)">Update</button>
-          </div>
-        </div>
+  <div class="weather-wrapper">
+    <div class="background-yes" ng-if="backgroundYes">
+      <div class="background-transparent" ng-if="backgroundYes">
+    <div class="weather-box">
+      <h2 class="weather-text"> Sprinklers set to run at {{ sprinklerHour }}:{{ sprinklerMinute }}</h2>
+      <h1 class="time-text">Time left: {{ timeLeft }}</h1>
+      <h1 class="sprinkler-text">{{ sprinkler }}</h1>
+    </div>
+  </div>
+</div>
+<div class="background-no" ng-if="backgroundNo">
+  <div class="background-transparent" ng-if="backgroundNo">
+<div class="weather-box">
+  <h2 class="weather-text"> Sprinklers set to run at {{ sprinklerHour }}:{{ sprinklerMinute }}</h2>
+  <h1 class="time-text">Time left: {{ timeLeft }}</h1>
+  <h1 class="sprinkler-text">{{ sprinkler }}</h1>
+</div>
+</div>
+</div>
+<div class="weather-box" ng-hide="timeChecked">
+  <h2 class="weather-text"> Sprinklers set to run at {{ sprinklerHour }}:{{ sprinklerMinute }}</h2>
+  <h1 class="time-text">Time left: {{ timeLeft }}</h1>
+  <h1 class="sprinkler-text">{{ sprinkler }}</h1>
+</div>
+</div>
+    <div class="zip-box">
+      <h1 class="weather-text">Change Time</h1>
+      <div class="">
+        <input ng-model="updateHour" placeholder="enter hour (24hr format)">
+        <input ng-model="updateMinute" placeholder="enter minutes">
+        <button ng-click="changeTime(updateHour, updateMinute)">Update</button>
       </div>
+    </div>
+  </div>
+    </div>
+
+
+</div>
 
 
 
     </div>
 
-  </div>
+
 
 
   <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.js"></script>

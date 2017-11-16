@@ -7,19 +7,38 @@ angular.module('sprinkler').controller('mainCtrl', function($scope, service) {
       $scope.data = response;
       $scope.weatherImage = response.icon_url
       var temp = parseInt(response.temp_f)
-      $scope.sprinkler = "Sprinklers are a go"
+      $scope.sprinkler = "Sprinklers will run if current conditions continue"
       if (temp < 38 || response.weather === 'Rain' || response.weather === "Light Rain") {
         console.log('nope');
-        $scope.sprinkler = "No sprinklers today"
+        $scope.sprinkler = "No sprinklers likely today"
       }
-      console.log("it ran");
     })
   }
+
+  $scope.getDataAtTime = function() {
+    service.getData().then(function(response) {
+      $scope.data = response;
+      $scope.weatherImage = response.icon_url
+      var temp = parseInt(response.temp_f)
+      $scope.sprinkler = "Sprinklers turning on"
+      $scope.timeChecked = true;
+      $scope.backgroundYes = true;
+      if (temp < 38 || response.weather === 'Rain' || response.weather === "Light Rain") {
+        $scope.sprinkler = "No sprinklers. Congrats, you saved water";
+        $scope.backgroundNo = true;
+        $scope.backgroundYes = false;
+      }
+    })
+  }
+
   $scope.getData();
 
   $scope.sendZip = function(addZip) {
     service.zip = addZip;
     $scope.getData();
+    $scope.backgroundNo = false;
+    $scope.backgroundYes = false;
+    $scope.timeChecked = false;
   }
 
 
@@ -33,7 +52,7 @@ angular.module('sprinkler').controller('mainCtrl', function($scope, service) {
     }
 
     setTimeout(function() {
-      $scope.getData()
+      $scope.getDataAtTime()
     }, $scope.millisTill);
 
     }
@@ -75,7 +94,7 @@ $scope.changeTime = function(updateHour, updateMinute) {
 }
 
 setTimeout(function() {
-  $scope.getData()
+  $scope.getDataAtTime()
 }, $scope.millisTill);
 
   setInterval(function() {
